@@ -2,7 +2,11 @@
   <header>
     <h2>Tasks for {{ name }}</h2>
     <menu>
-      <button>Add Task</button>
+      @for (task of selectedUserTasks; track task.id) {
+        <li>
+          <app-addtask />
+        </li>
+      }
     </menu>
   </header>
 

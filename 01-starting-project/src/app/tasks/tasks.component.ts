@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
+import { AddtaskComponent } from './addtask/addtask.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, AddtaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -42,5 +43,15 @@ export class TasksComponent {
 
   onCompleteTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  onAddTask(newTask: {
+    id: string;
+    userId: string;
+    title: string;
+    summary: string;
+    dueDate: string;
+  }) {
+    this.tasks.push(newTask);
   }
 }
