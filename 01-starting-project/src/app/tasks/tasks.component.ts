@@ -12,6 +12,7 @@ import { AddtaskComponent } from './addtask/addtask.component';
 export class TasksComponent {
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name!: string;
+  isAddingTask = false;
   tasks = [
     {
       id: 't1',
@@ -45,13 +46,11 @@ export class TasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  onAddTask(newTask: {
-    id: string;
-    userId: string;
-    title: string;
-    summary: string;
-    dueDate: string;
-  }) {
-    this.tasks.push(newTask);
+  onStartAddTask() {
+    this.isAddingTask = true;
+  }
+
+  onStopAddingTask() {
+    this.isAddingTask = false;
   }
 }

@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { type Task } from '../task/task.model';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-addtask',
@@ -9,30 +8,9 @@ import { type Task } from '../task/task.model';
   styleUrl: './addtask.component.css',
 })
 export class AddtaskComponent {
-  @Output() addTask = new EventEmitter<Task>();
+  @Output() stopaddingtask = new EventEmitter<boolean>();
 
-  newTask: Task = {
-    id: '',
-    userId: '',
-    title: '',
-    summary: '',
-    dueDate: '',
-  };
-
-  onAddTask() {
-    // Generate a unique ID for the new task
-    this.newTask.id = 'task_' + Math.random();
-
-    // Emit the new task object to the parent component
-    this.addTask.emit(this.newTask);
-
-    // Reset the newTask object to clear the form
-    this.newTask = {
-      id: '',
-      userId: '',
-      title: '',
-      summary: '',
-      dueDate: '',
-    };
+  onStopAddingTask() {
+    this.stopaddingtask.emit(false);
   }
 }
