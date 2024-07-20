@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserComponent } from '../user/user.component';
 
 @Component({
@@ -8,4 +8,6 @@ import { UserComponent } from '../user/user.component';
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
-export class TasksComponent {}
+export class TasksComponent {
+  @Input({ required: true }) user!: any;
+}
