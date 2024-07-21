@@ -1,12 +1,16 @@
 import { Component, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import { TaskComponent } from './task/task.component';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { type AddTaskData } from './task/task.model';
+import { CardComponent } from '../shared/card/card.component';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, AddtaskComponent],
+  imports: [TaskComponent, AddtaskComponent, CardComponent, DatePipe],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -14,38 +18,14 @@ export class TasksComponent {
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name!: string;
   isAddingTask = false;
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the basic and advanced featuers of angular',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ];
+
+  constructor(private tasksService: TasksService) {}
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
+    return;
   }
 
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
+  onCompleteTask(id: string) {}
 
   onStartAddTask() {
     this.isAddingTask = true;
@@ -55,13 +35,6 @@ export class TasksComponent {
     this.isAddingTask = false;
   }
   onAddTask(taskData: AddTaskData) {
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date,
-    });
     this.isAddingTask = false;
   }
 }
