@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { type AddTaskData } from '../task/task.model';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -21,6 +20,7 @@ export class AddtaskComponent {
   onStopAddingTask() {
     this.stopaddingtask.emit();
   }
+
   onSubmit() {
     this.tasksService.addTask(
       {
