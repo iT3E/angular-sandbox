@@ -1,8 +1,5 @@
 @if (isAddingTask) {
-  <app-addtask
-    (stopaddingtask)="onStopAddingTask()"
-    (addtask)="onAddTask($event)"
-  />
+  <app-addtask [userId]="userId" (stopaddingtask)="onStopAddingTask()" />
 }
 <section id="tasks">
   <header>

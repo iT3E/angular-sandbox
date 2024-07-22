@@ -3,7 +3,6 @@ import { DatePipe } from '@angular/common';
 
 import { TaskComponent } from './task/task.component';
 import { AddtaskComponent } from './addtask/addtask.component';
-import { type AddTaskData } from './task/task.model';
 import { CardComponent } from '../shared/card/card.component';
 import { TasksService } from './tasks.service';
 
@@ -22,7 +21,7 @@ export class TasksComponent {
   constructor(private tasksService: TasksService) {}
 
   get selectedUserTasks() {
-    return;
+    return this.tasksService.getUserTasks(this.userId);
   }
 
   onCompleteTask(id: string) {}
@@ -32,9 +31,6 @@ export class TasksComponent {
   }
 
   onStopAddingTask() {
-    this.isAddingTask = false;
-  }
-  onAddTask(taskData: AddTaskData) {
     this.isAddingTask = false;
   }
 }
